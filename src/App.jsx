@@ -1,8 +1,11 @@
+import ItemCardList from './components/ItemCardList'
+import './App.css'
+
 function App() {
   return (
-    <div>
-      <h1>Product Card App</h1>
-      <p>Basic React setup - Version 1</p>
+    <div className="App">
+      <h1>Voltherm Technologies</h1>
+      <ItemCardList />
     </div>
   )
 }
