@@ -1,4 +1,5 @@
 import ItemCard from './ItemCard';
+import './ItemCardList.css';
 
 const ItemCardList = () => {
   const items = [
@@ -26,9 +27,11 @@ const ItemCardList = () => {
   ];
 
   return (
-    <div>
-      <h2>Our Products</h2>
-      <div>
+    <div className="item-list-container">
+      <div className="list-header">
+        <h2 className="list-title">Our Products</h2>
+      </div>
+      <div className="item-list">
         {items.map((item) => (
           <ItemCard key={item.id} item={item} />
         ))}
