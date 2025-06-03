@@ -1,19 +1,74 @@
+import { useState } from 'react';
 import './ItemCard.css';
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, onAddToCart, onBuyNow }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleAddToCart = () => {
+    onAddToCart(item);
+  };
+
+  const handleBuyNow = () => {
+    onBuyNow(item);
+  };
+
   return (
-    <div className="item-card">
-      <h3 className="item-title">{item.title}</h3>
-      <div className="price-section">
-        <span className="current-price">₹{item.price.toLocaleString('en-IN')}</span>
+    <div 
+      className={`item-card ${isHovered ? 'hovered' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="card-content">
+        <div className="card-header">
+          <h3 className="item-title">{item.title}</h3>
+          <div className="price-container">
+            <span className="current-price">₹{item.price.toLocaleString('en-IN')}</span>
+            {item.originalPrice && (
+              <span className="original-price">₹{item.originalPrice.toLocaleString('en-IN')}</span>
+            )}
+          </div>
+        </div>
+
+        <div className="product-info">
+          <ul className="info-list">
+            {item.features.map((feature, index) => (
+              <li key={index} className="info-item">
+                <span className="bullet">•</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="card-footer">
+          <div className="rating-section">
+            <div className="stars">
+              {[...Array(5)].map((_, i) => (
+                <span 
+                  key={i} 
+                  className={`star ${i < Math.floor(item.rating) ? 'filled' : ''}`}
+                >
+                  ⭐
+                </span>
+              ))}
+            </div>
+            <span className="rating-text">({item.reviews} reviews)</span>
+          </div>
+
+          <div className="card-actions">
+            <button className="btn btn-primary" onClick={handleAddToCart}>
+              🛒 Add Cart
+            </button>
+            <button className="btn btn-secondary" onClick={handleBuyNow}>
+              ⚡ Buy Now
+            </button>
+          </div>
+
+          <div className={`stock-status ${item.inStock ? 'in-stock' : 'out-of-stock'}`}>
+            {item.inStock ? '✅ In Stock' : '❌ Out of Stock'}
+          </div>
+        </div>
       </div>
-      <div className="rating-section">
-        <span>Rating: {item.rating} ⭐</span>
-      </div>
-      <div className={`stock-status ${item.inStock ? 'in-stock' : 'out-of-stock'}`}>
-        {item.inStock ? '✅ In Stock' : '❌ Out of Stock'}
-      </div>
-      <button className="add-to-cart-btn">Add to Cart</button>
     </div>
   );
 };
