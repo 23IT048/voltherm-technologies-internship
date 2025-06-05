@@ -12,6 +12,7 @@ const ItemCardList = () => {
       rating: 4.5,
       reviews: 128,
       inStock: true,
+      image: "/src/assets/img1.jpg",
       features: [
         "Active/ Passive Advanced Thermal Management System",
         "Quick Charge",
@@ -25,6 +26,7 @@ const ItemCardList = () => {
       rating: 4.8,
       reviews: 89,
       inStock: true,
+      image: "/src/assets/img2.jpg",
       features: [
         "High Energy Density",
         "Stackable (Rack Mounted)",
@@ -39,6 +41,7 @@ const ItemCardList = () => {
       rating: 4.9,
       reviews: 45,
       inStock: false,
+      image: "/src/assets/img3.jpg",
       features: [
         "Solar Application",
         "Industrial Application",

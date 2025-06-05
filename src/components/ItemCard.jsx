@@ -18,6 +18,24 @@ const ItemCard = ({ item, onAddToCart, onBuyNow }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Image Section */}
+      <div className="card-image-container">
+        {item.image ? (
+          <img 
+            src={item.image} 
+            alt={item.title}
+            className="product-image"
+          />
+        ) : (
+          <div className="image-placeholder">
+            <div className="placeholder-content">
+              <div className="placeholder-icon">📷</div>
+              <span className="placeholder-text">Image Coming Soon</span>
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="card-content">
         <div className="card-header">
           <h3 className="item-title">{item.title}</h3>
